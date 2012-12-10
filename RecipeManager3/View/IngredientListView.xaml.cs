@@ -9,30 +9,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 using RecipeManager3.ViewModel;
 
 namespace RecipeManager3.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for IngredientListView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class IngredientListView : Window
     {
-        public MainWindow()
+        public IngredientListView()
         {
             InitializeComponent();
-        }
-
-        private void AddIngredientWindow(object sender, RoutedEventArgs e)
-        {
-            new IngredientView().Show();
-        }
-
-        private void SearchIngredientWindow(object sender, RoutedEventArgs e)
-        {
-            new IngredientListView().Show();
         }
     }
 }

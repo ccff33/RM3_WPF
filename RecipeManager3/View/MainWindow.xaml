@@ -1,8 +1,27 @@
 ﻿<Window x:Class="RecipeManager3.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        xmlns:vm="clr-namespace:RecipeManager3.ViewModel"
+        Title="RecipeManager3" SizeToContent="WidthAndHeight">
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
+    <StackPanel Background="LightGray">
+        <StackPanel Height="47" Background="Gray" Orientation="Horizontal">
+            <Button Content="Add Recipe" Width="107" Margin="5" />
+            <Button Content="Add Ingredient" Width="107" Margin="5" Click="AddIngredientWindow" />
+        </StackPanel>
+        <TextBlock FontSize="20" Margin="20" HorizontalAlignment="Center">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="Recipes: {0}&#x0a;Ingredients: {1}">
+                    <Binding Path="RecipeCount"/>
+                    <Binding Path="IngredientCount"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        <StackPanel Height="47" Background="Gray" Orientation="Horizontal">
+            <Button Content="Search Recipe" Width="107" Margin="5"/>
+            <Button Content="Search Ingredient" Width="107" Margin="5" Click="SearchIngredientWindow" />
+        </StackPanel>
+    </StackPanel>
 </Window>
