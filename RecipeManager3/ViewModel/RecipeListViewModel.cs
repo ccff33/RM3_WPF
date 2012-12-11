@@ -1,30 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Linq;
-using System.Collections.ObjectModel;
 using System.Text;
-using GalaSoft.MvvmLight.Command;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
-using System.Windows;
-using RecipeManager3.View;
+using GalaSoft.MvvmLight.Command;
 using RecipeManager3.Model.Entity;
 using RecipeManager3.Model.Repository;
 
 namespace RecipeManager3.ViewModel
 {
-    class IngredientListViewModel : RM3ViewModel
+    class RecipeListViewModel : RM3ViewModel
     {
-        IngredientRepository repository = new IngredientRepository();
+        RecipeRepository repository = new RecipeRepository();
 
-        public IngredientListViewModel()
+        public RecipeListViewModel()
         {
-            this.List = new OCIngredients();
+            this.List = new OCRecipes();
             this.SearchText = "";
         }
 
-        public OCIngredients List { get; set; }
+        public OCRecipes List { get; set; }
 
         public string SearchText { get; set; }
 
@@ -39,29 +36,23 @@ namespace RecipeManager3.ViewModel
         private void SearchExecute(string searchText)
         {
             this.List.Clear();
-            this.List.AddIngredientRange(this.repository.GetWithNameLike(searchText));
+            this.List.AddRecipeRange(this.repository.GetWithNameLike(searchText));
         }
     }
 
-    /// <summary>
-    /// A collection that removes an item on Deleted property changes to true.
-    /// </summary>
-    /// <remarks>
-    /// I don't like this solution either.
-    /// </remarks>
-    class OCIngredients : ObservableCollection<IngredientViewModel>
+    class OCRecipes : ObservableCollection<RecipeViewModel>
     {
 
-        public void AddIngredientRange(IEnumerable<Ingredient> list)
+        public void AddRecipeRange(IEnumerable<Recipe> list)
         {
-            foreach (var ingredient in list)
+            foreach (var recipe in list)
             {
-                var item = new IngredientViewModel { Ingredient = ingredient };
+                var item = new RecipeViewModel { Recipe =  recipe};
                 this.Add(item);
             }
         }
 
-        protected override void InsertItem(int index, IngredientViewModel item)
+        protected override void InsertItem(int index, RecipeViewModel item)
         {
             base.InsertItem(index, item);
             item.PropertyChanged += ItemPropertyChanged;
@@ -77,9 +68,9 @@ namespace RecipeManager3.ViewModel
         {
             if (e.PropertyName == "Deleted")
             {
-                if (((IngredientViewModel)sender).Deleted)
+                if (((RecipeViewModel)sender).Deleted)
                 {
-                    this.Remove((IngredientViewModel)sender);
+                    this.Remove((RecipeViewModel)sender);
                 }
             }
         }

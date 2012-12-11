@@ -9,7 +9,7 @@ namespace RecipeManager3.Model.Repository
 {
     abstract class Repository<TContext, TEntity> where TContext : DbContext where TEntity : class
     {
-        public void Add(TEntity e)
+        public virtual void Add(TEntity e)
         {
             using (var context = this.Context()){
                 context.Set<TEntity>().Add(e);
@@ -27,7 +27,7 @@ namespace RecipeManager3.Model.Repository
             }
         }
 
-        public void Update(TEntity e)
+        public virtual void Update(TEntity e)
         {
             using (var context = this.Context())
             {

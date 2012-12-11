@@ -1,0 +1,68 @@
+﻿<Window x:Class="RecipeManager3.View.RecipeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:RecipeManager3.ViewModel"
+        Title="RecipeView" Width="500"  SizeToContent="Height" Background="LightGray">
+    <Window.DataContext>
+        <vm:RecipeViewModel />
+    </Window.DataContext>
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="5">Recipe</TextBlock>
+        <Grid Grid.Row="1" Grid.Column="0" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition />
+                <RowDefinition Height="30"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" VerticalAlignment="Center">Name:</TextBlock>
+            <TextBox Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding Name}"></TextBox>
+            <TextBlock Grid.Row="2" VerticalAlignment="Center">Description:</TextBlock>
+            <TextBox Grid.Row="3" Grid.ColumnSpan="3" Height="100" Text="{Binding Description}" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+            <TextBlock Grid.Row="4" VerticalAlignment="Center">Ingredients:</TextBlock>
+            <DataGrid Grid.Row="5" Grid.ColumnSpan="3" ItemsSource="{Binding Quantities}" AutoGenerateColumns="False" Height="100" CanUserAddRows="False" CanUserDeleteRows="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Ingredient" Binding="{Binding Ingredient.Name}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
+                    <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <StackPanel.DataContext>
+                <vm:IngredientListViewModel />
+            </StackPanel.DataContext>
+            <TextBox Text="{Binding SearchText}" />
+            <Button Command="{Binding Path=SearchCommand}">Search</Button>
+            <ListView x:Name="ingredientList" ItemsSource="{Binding List}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name">
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Click="AddSelectedIngredients">Add</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Width="60" Margin="0, 0, 7, 0" Command="{Binding Path=SaveCommand}" Click="CloseWindow">Save</Button>
+            <Button Width="60" Click="CloseWindow">Cancel</Button>
+        </StackPanel>
+    </Grid>
+</Window>

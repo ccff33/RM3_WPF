@@ -30,9 +30,19 @@ namespace RecipeManager3.View
             new IngredientView().Show();
         }
 
+        private void AddRecipeWindow(object sender, RoutedEventArgs e)
+        {
+            new RecipeView().Show();
+        }
+
         private void SearchIngredientWindow(object sender, RoutedEventArgs e)
         {
             new IngredientListView().Show();
+        }
+
+        private void SearchRecipeWindow(object sender, RoutedEventArgs e)
+        {
+            new RecipeListView().Show();
         }
     }
 }
