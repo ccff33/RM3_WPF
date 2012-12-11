@@ -40,38 +40,14 @@ namespace RecipeManager3.ViewModel
         }
     }
 
-    class OCRecipes : ObservableCollection<RecipeViewModel>
+    class OCRecipes : ObservableViewModelCollection<RecipeViewModel>
     {
-
         public void AddRecipeRange(IEnumerable<Recipe> list)
         {
             foreach (var recipe in list)
             {
                 var item = new RecipeViewModel { Recipe =  recipe};
                 this.Add(item);
-            }
-        }
-
-        protected override void InsertItem(int index, RecipeViewModel item)
-        {
-            base.InsertItem(index, item);
-            item.PropertyChanged += ItemPropertyChanged;
-        }
-
-        protected override void RemoveItem(int index)
-        {
-            this.ElementAt(index).PropertyChanged -= ItemPropertyChanged;
-            base.RemoveItem(index);
-        }
-
-        private void ItemPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "Deleted")
-            {
-                if (((RecipeViewModel)sender).Deleted)
-                {
-                    this.Remove((RecipeViewModel)sender);
-                }
             }
         }
     }
