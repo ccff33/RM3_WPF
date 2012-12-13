@@ -25,17 +25,12 @@ namespace RecipeManager3.View
             InitializeComponent();
         }
 
-        private void AddIngredientWindow(object sender, RoutedEventArgs e)
-        {
-            new IngredientView().Show();
-        }
-
         private void AddRecipeWindow(object sender, RoutedEventArgs e)
         {
             new RecipeView().Show();
         }
 
-        private void SearchIngredientWindow(object sender, RoutedEventArgs e)
+        private void IngredientsWindow(object sender, RoutedEventArgs e)
         {
             new IngredientListView().Show();
         }

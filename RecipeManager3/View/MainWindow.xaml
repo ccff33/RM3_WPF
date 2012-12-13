@@ -8,8 +8,7 @@
     </Window.DataContext>
     <StackPanel Background="LightGray">
         <StackPanel Height="47" Background="Gray" Orientation="Horizontal">
-            <Button Content="Add Recipe" Width="107" Margin="5" Click="AddRecipeWindow" />
-            <Button Content="Add Ingredient" Width="107" Margin="5" Click="AddIngredientWindow" />
+            <Button Content="Add Recipe" Width="224"  Margin="5" Click="AddRecipeWindow"/>
         </StackPanel>
         <TextBlock FontSize="20" Margin="20" HorizontalAlignment="Center">
             <TextBlock.Text>
@@ -21,7 +20,7 @@
         </TextBlock>
         <StackPanel Height="47" Background="Gray" Orientation="Horizontal">
             <Button Content="Search Recipe" Width="107" Margin="5" Click="SearchRecipeWindow" />
-            <Button Content="Search Ingredient" Width="107" Margin="5" Click="SearchIngredientWindow" />
+            <Button Content="Ingredients" Width="107" Margin="5" Click="IngredientsWindow" />
         </StackPanel>
     </StackPanel>
 </Window>

@@ -48,9 +48,10 @@
             <StackPanel.DataContext>
                 <vm:IngredientListViewModel />
             </StackPanel.DataContext>
+            <TextBlock>Choose ingredients:</TextBlock>
             <TextBox Text="{Binding SearchText}" />
             <Button Command="{Binding Path=SearchCommand}">Search</Button>
-            <ListView x:Name="ingredientList" ItemsSource="{Binding List}">
+            <ListView x:Name="ingredientList" ItemsSource="{Binding List}" Height="185">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name">
